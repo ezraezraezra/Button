@@ -1,0 +1,119 @@
+/*
+ * Project:     Button
+ * Description: Basic Embed Button to put on website
+ * Website:     http://ezraezraezra.com/tb/button/third_party.html
+ * 
+ * Author:      Ezra Velazquez
+ * Website:     http://ezraezraezra.com
+ * Date:        October 2011
+ * 
+ */
+@CHARSET "UTF-8";
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: transparent;
+	overflow:hidden;
+}
+#button_container {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 134px;
+	height: 36px;
+	
+}
+#button_backdrop {
+	position: absolute;
+	left: 5px;
+	width: 59px;
+	height: 26px;
+	top: 5px;
+	background-image:url('../assets/button.png');
+	background-repeat: no-repeat;
+	background-position:-8px -38px;
+}
+#button_overlay {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 59px;
+	height: 26px;
+	background-image: url('../assets/button.png');
+	background-repeat: no-repeat;
+	background-position:-8px -8px;
+}
+#button_cover {
+	position: absolute;
+	z-index: 10;
+	top: 0px;
+	left: 0px;
+	width: 134px;
+	height: 36px;
+}
+#cloud_backdrop {
+	position: absolute;
+	left: 63px;
+	top: 4px;
+	width: 68px;
+	height: 28px;
+	background-image: url('../assets/cloud.png');
+	background-repeat: no-repeat;
+	background-position: -10px -7px;
+	visibility: hidden;
+}
+#container {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 134px;
+	height: 36px;
+}
+#online_container {
+	width: 53px;
+	height: 22px;
+	position: absolute;
+	top: 3px;
+	left: 11px;
+	color: #139ACA;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: italic;
+	font-weight: bold;
+	line-height: 23px;
+	visibility: hidden;
+}
+#offline_container {
+	width: 53px;
+	height: 22px;
+	position: absolute;
+	top: 3px;
+	left: 11px;
+	color: #139ACA;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: italic;
+	font-weight: bold;
+	line-height: 23px;
+	visibility: hidden;
+}
+#offline_counter {
+	position: absolute;
+	height: 22px;
+	width: 28px;
+	top: 0px;
+	left: 0px;
+}
+#offline_heads {
+	background-image: url('../assets/icon.png');
+	position: absolute;
+	top: 0px;
+	left: 24px;
+	height: 22px;
+	width: 28px;
+	background-repeat: no-repeat;
+	background-position: -15px -9px;
+}
