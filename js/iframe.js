@@ -61,11 +61,13 @@ var TB_BUTTON = function() {
 	// Event Handlers
 	//--------------------
 	function mouseIn() {
-		$button_overlay.stop(true,true).fadeOut(fade_time);
+		//$button_overlay.stop(true,true).fadeOut(fade_time);
+		$button_overlay.css("visibility", "hidden");
 	}
 
 	function mouseOut() {
-		$button_overlay.stop(true,true).fadeIn(fade_time);
+		//$button_overlay.stop(true,true).fadeIn(fade_time);
+		$button_overlay.css("visibility", "visible");
 	}
 	function mouseClick() {
 		// Specific rules to open the pop-up
@@ -90,39 +92,57 @@ var TB_BUTTON = function() {
 		var session;
 		
 		function connect() {
-			console.log("connected");
 			session.connect(apiKey, token);
 		}
 		
+		// Update connections counter
 		function connectionHandler(event) {
-			checkPublishing(event);
-		}
-		
-		function sessionConnectedHandler(event) {			
-			checkPublishing(event);
-		}
-		
-		function streamHandler(event) {
-			console.log("stream handler called");
-			console.log(event);
-			checkPublishing(event);
-		}
-		
-		// Decides which cloud (live / watching) to display
-		function checkPublishing(event) {
 			$cloud.css("visibility", "visible");
 			
-			if (event.streams.length > 0) {
-				$offline.css("visibility", "hidden");
-				$online.css("visibility", "visible");
+			if (event.type === "connectionCreated") {
+				user_counter_offline += 1;
 			}
-			else {
+			else 
+				if (event.type === "connectionDestroyed") {
+					user_counter_offline -= 1;
+				}
+			$offline_counter.html(user_counter_offline);
+		}
+		
+		// Initialize counter & publishing counter
+		function sessionConnectedHandler(event) {
+			$cloud.css("visibility", "visible");
+			if (event.streams) {
+				user_counter_online = event.streams.length;
+				$online.html(user_counter_online + " Live");
+					
 				user_counter_offline = event.connections.length;
 				$offline_counter.html(user_counter_offline);
 				
-				$online.css("visibility", "hidden");
-				$offline.css("visibility", "visible");
+				if (event.streams.length > 0) {					
+					$offline.css("visibility", "hidden");
+					$online.css("visibility", "visible");
+				}
+				else {
+					$online.css("visibility", "hidden");
+					$offline.css("visibility", "visible");
+				}
 			}
+		}
+		
+		// Update publishing counter
+		function streamHandler(event) {
+			if (event.type === "streamCreated") {
+				user_counter_online += 1;
+			}
+			else {
+				if (event.type === "streamDestroyed") {
+					user_counter_online -= 1;
+				}
+			}
+			
+			$online.html(user_counter_online + " Live");
+		
 		}
 		
 		/** @namespace Holds functionality for basic embed button*/
@@ -135,7 +155,6 @@ var TB_BUTTON = function() {
 				session_id = _OT_INFO_._sessionID;
 				apiKey = _OT_INFO_._apiKey;
 				token = _OT_INFO_._token;
-				console.log(_OT_INFO_);
 				
 				if (TB.checkSystemRequirements() != TB.HAS_REQUIREMENTS) {
 					alert("You don't have the minimum requirements to run this aplication." +
