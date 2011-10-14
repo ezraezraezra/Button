@@ -61,7 +61,7 @@ body {
 	height: 24px;
 	background-image: url('../assets/cloud.png');
 	background-repeat: no-repeat;
-	background-position: -10px -7px;
+	background-position: -16px -7px;
 	visibility: hidden;
 }
 #container {
@@ -76,7 +76,7 @@ body {
 	height: 20px;
 	position: absolute;
 	top: 2px;
-	left: 14px;
+	left: 8px;
 	color: #139ACA;
 	text-align: center;
 	font-family: "Lucida Grande";
@@ -90,7 +90,7 @@ body {
 	height: 20px;
 	position: absolute;
 	top: 2px;
-	left: 14px;
+	left: 8px;
 	color: #139ACA;
 	text-align: center;
 	font-family: "Lucida Grande";
